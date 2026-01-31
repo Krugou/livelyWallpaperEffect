@@ -22,19 +22,7 @@ class Particle {
     }
 
     // Common Move Logic
-    let vel = p.p5.Vector.fromAngle(this.angle); // static method typically available on p5 or p.constructor.Vector?
-    // In instance mode, p5.Vector is usually p.createVector or p5.Vector if p5 global is available.
-    // However, p.createVector returns an object with methods.
-    // Static methods like fromAngle might need 'p5.Vector' if global, or 'p.constructor.Vector'?
-    // Safest in instance mode is usually creating a vector and setting angle.
-    // let vel = p.createVector(1, 0); vel.setHeading(this.angle)? setHeading might not exist in older p5.
-    // p5.Vector.fromAngle exists in global. In instance, it might be p.createVector()... wait.
-    // p5 instance 'p' usually has 'p.createVector'.
-    // For static methods, we can use 'p5.Vector.fromAngle' if p5 is globally defined (which it is via script tag).
-    // Or 'p.constructor.Vector.fromAngle'?
-    // Let's rely on global p5.Vector for static methods since we loaded p5.min.js globally.
-    // BUT if we want true isolation... let's stick to global p5.Vector since the library is global.
-    vel = p5.Vector.fromAngle(this.angle);
+    let vel = p5.Vector.fromAngle(this.angle);
     vel.setMag(this.speed);
 
     // Steering Logic
