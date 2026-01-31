@@ -1,4 +1,14 @@
 {
+  "renderer": {
+    "type": "dropdown",
+    "value": 0,
+    "text": "Renderer Engine",
+    "items": [
+      "p5.js",
+      "Three.js",
+      "Pixi.js"
+    ]
+  },
   "effectMode": {
     "type": "dropdown",
     "value": 1,
@@ -6,7 +16,8 @@
     "items": [
       "Worms",
       "Star Trails",
-      "Fireflies"
+      "Fireflies",
+      "Matrix"
     ]
   },
   "wormSpeed": {

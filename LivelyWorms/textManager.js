@@ -1,5 +1,6 @@
 class TextManager {
-    constructor() {
+    constructor(p) {
+        this.p = p; // Store instance
         this.targets = [];
     }
 
@@ -7,30 +8,30 @@ class TextManager {
         this.targets = [];
         if (!txt) return;
 
-        // Create an off-screen graphics buffer
-        let pg = createGraphics(width, height);
+        let p = this.p;
+
+        // Create an off-screen graphics buffer using instance
+        let pg = p.createGraphics(p.width, p.height);
         pg.pixelDensity(1);
         pg.background(0);
         pg.fill(255);
-        pg.textAlign(CENTER, CENTER);
-        pg.textStyle(BOLD);
+        pg.textAlign(p.CENTER, p.CENTER);
+        pg.textStyle(p.BOLD);
 
         // Adjust text size based on string length to fit screen
-        let fontSize = width / (txt.length * 0.7);
-        if (fontSize > height * 0.8) fontSize = height * 0.8;
+        let fontSize = p.width / (txt.length * 0.7);
+        if (fontSize > p.height * 0.8) fontSize = p.height * 0.8;
         pg.textSize(fontSize);
 
-        pg.text(txt, width / 2, height / 2);
+        pg.text(txt, p.width / 2, p.height / 2);
 
         pg.loadPixels();
-        // Scan pixels. Step size determines density of points.
-        let step = 5; // Higher density
-        for (let y = 0; y < height; y += step) {
-            for (let x = 0; x < width; x += step) {
-                let index = (x + y * width) * 4;
-                // Check brightness
+        let step = 5;
+        for (let y = 0; y < p.height; y += step) {
+            for (let x = 0; x < p.width; x += step) {
+                let index = (x + y * p.width) * 4;
                 if (pg.pixels[index] > 128) {
-                    this.targets.push(createVector(x, y));
+                    this.targets.push(p.createVector(x, y));
                 }
             }
         }
