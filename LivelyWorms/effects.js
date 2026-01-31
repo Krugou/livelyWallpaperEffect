@@ -1,3 +1,13 @@
+function applyDirectionBias(part, wiggle, p, strength = 0.1) {
+    if (part.hasDirection && !part.target) {
+        let diff = part.baseAngle - part.angle;
+        while (diff < -p.PI) diff += p.TWO_PI;
+        while (diff > p.PI) diff -= p.TWO_PI;
+        return wiggle + diff * strength;
+    }
+    return wiggle;
+}
+
 const Effects = {
     "Worms": {
         init: (p) => {
@@ -6,6 +16,11 @@ const Effects = {
         update: (part, config, p) => {
             let noiseScale = 0.05;
             let wiggle = p.map(p.noise(part.noiseOffset), 0, 1, -0.5, 0.5);
+
+            if (part.target) {
+                wiggle *= 0.2; // Reduce wandering when forming letters
+            }
+            wiggle = applyDirectionBias(part, wiggle, p, 0.1);
             part.angle += wiggle;
             part.noiseOffset += noiseScale;
         },
@@ -28,6 +43,7 @@ const Effects = {
 
             let wiggle = p.map(p.noise(part.noiseOffset), 0, 1, -0.5, 0.5);
             wiggle *= (1 - straightness);
+            wiggle = applyDirectionBias(part, wiggle, p, 0.05);
 
             part.angle += wiggle;
             part.noiseOffset += noiseScale;
@@ -49,6 +65,8 @@ const Effects = {
             part.speed *= 0.5;
 
             let wiggle = p.map(p.noise(part.noiseOffset), 0, 1, -0.5, 0.5);
+            wiggle = applyDirectionBias(part, wiggle, p, 0.15); // Fireflies are jumpier, so stronger pull
+
             part.angle += wiggle;
             part.noiseOffset += noiseScale;
         },

@@ -4,12 +4,16 @@
   "description": "Lively Wallpaper effect with p5.js",
   "main": "LivelyWorms/sketch.js",
   "scripts": {
-    "lint": "eslint LivelyWorms/*.js"
+    "lint": "eslint LivelyWorms/*.js",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
     "eslint": "^9.0.0"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
   }
 }

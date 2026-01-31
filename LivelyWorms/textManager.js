@@ -26,7 +26,7 @@ class TextManager {
         pg.text(txt, p.width / 2, p.height / 2);
 
         pg.loadPixels();
-        let step = 5;
+        let step = 3;
         for (let y = 0; y < p.height; y += step) {
             for (let x = 0; x < p.width; x += step) {
                 let index = (x + y * p.width) * 4;

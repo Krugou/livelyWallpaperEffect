@@ -45,5 +45,17 @@
     "type": "textbox",
     "value": "",
     "text": "Text to Form"
+  },
+  "wormDirection": {
+    "type": "dropdown",
+    "value": 0,
+    "text": "Worm Direction",
+    "items": [
+      "Random",
+      "Right",
+      "Left",
+      "Top",
+      "Bottom"
+    ]
   }
 }

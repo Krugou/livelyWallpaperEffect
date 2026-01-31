@@ -20,14 +20,26 @@ class P5Adapter {
             p.draw = () => {
                 p.background(initialConfig.bgColor);
 
-                if (p.random(100) < initialConfig.wormDensity) {
-                    // Need to update Particle to take 'p'
-                    particles.push(new Particle(initialConfig.wormColor, p));
+                // Target Management
+                let targets = textManager.getTargets();
+
+                // Spawn Logic
+                let spawnCount = 0;
+                let needed = 0;
+                if (targets.length > 0) {
+                     needed = targets.length - particles.length;
                 }
 
-                // Target Management
-                // We need to ensure TextManager uses this instance
-                let targets = textManager.getTargets();
+                if (needed > 0) {
+                    // Spawn aggressively to fill text
+                    let spawnBatch = p.min(needed, 10); // Spawn up to 10 per frame
+                    for(let k=0; k<spawnBatch; k++){
+                        particles.push(new Particle(initialConfig, p));
+                    }
+                } else if (p.random(100) < initialConfig.wormDensity) {
+                    // Regular spawn
+                    particles.push(new Particle(initialConfig, p));
+                }
 
                 // Assign targets
                 if (targets.length > 0) {
@@ -56,7 +68,7 @@ class P5Adapter {
                 }
 
                  // Cap array size
-                let limit = targets.length > 0 ? p.max(500, targets.length) : 500;
+                let limit = targets.length > 0 ? targets.length + 200 : 500;
                 if (particles.length > limit) {
                     particles.splice(0, particles.length - limit);
                 }
