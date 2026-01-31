@@ -1,0 +1,52 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "rules": {
+    "prefer-arrow-callback": "error",
+    "func-style": [
+      "error",
+      "expression",
+      {
+        "allowArrowFunctions": true
+      }
+    ]
+  },
+  "globals": {
+    "p5": "readonly",
+    "createCanvas": "readonly",
+    "windowWidth": "readonly",
+    "windowHeight": "readonly",
+    "pixelDensity": "readonly",
+    "background": "readonly",
+    "random": "readonly",
+    "createVector": "readonly",
+    "color": "readonly",
+    "map": "readonly",
+    "noise": "readonly",
+    "noFill": "readonly",
+    "stroke": "readonly",
+    "strokeWeight": "readonly",
+    "beginShape": "readonly",
+    "endShape": "readonly",
+    "vertex": "readonly",
+    "width": "readonly",
+    "height": "readonly",
+    "createGraphics": "readonly",
+    "noStroke": "readonly",
+    "fill": "readonly",
+    "ellipse": "readonly",
+    "drawingContext": "readonly",
+    "TWO_PI": "readonly",
+    "CENTER": "readonly",
+    "BOLD": "readonly",
+    "resizeCanvas": "readonly",
+    "max": "readonly"
+  }
+}

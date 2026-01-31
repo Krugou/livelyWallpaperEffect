@@ -1,0 +1,15 @@
+{
+  "name": "lively-wallpaper-effect",
+  "version": "1.0.0",
+  "description": "Lively Wallpaper effect with p5.js",
+  "main": "LivelyWorms/sketch.js",
+  "scripts": {
+    "lint": "eslint LivelyWorms/*.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^9.0.0"
+  }
+}

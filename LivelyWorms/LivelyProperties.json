@@ -1,0 +1,38 @@
+{
+  "effectMode": {
+    "type": "dropdown",
+    "value": 1,
+    "text": "Effect Style",
+    "items": [
+      "Worms",
+      "Star Trails",
+      "Fireflies"
+    ]
+  },
+  "wormSpeed": {
+    "type": "slider",
+    "value": 3,
+    "min": 1,
+    "max": 10,
+    "tick": 19,
+    "text": "Worm Speed"
+  },
+  "wormColor": {
+    "type": "color",
+    "value": "#E31937",
+    "text": "Worm Color"
+  },
+  "wormDensity": {
+    "type": "slider",
+    "value": 5,
+    "min": 1,
+    "max": 20,
+    "tick": 20,
+    "text": "Spawn Density"
+  },
+  "wormText": {
+    "type": "textbox",
+    "value": "",
+    "text": "Text to Form"
+  }
+}
