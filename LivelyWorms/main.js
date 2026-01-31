@@ -6,13 +6,13 @@ let config = {
   wormDensity: 5,
   wormColor: '#E31937',
   bgColor: '#000000',
-  wormText: "cgi",
-  wormDirection: "left",
-  effectMode: "worms", // Logic specific to p5/others
+  wormText: "CGI",
+  wormDirection: "Left",
+  effectMode: "Worms", // Logic specific to p5/others
   renderer: "p5.js" // Which library to use
 };
 
-function init() {
+const init = () => {
     // Initialize Adapters
     adapters["p5.js"] = new P5Adapter();
     adapters["Three.js"] = new ThreeAdapter();
@@ -23,9 +23,9 @@ function init() {
     changeAdapter(config.renderer);
 
     setupTestMode();
-}
+};
 
-function setupTestMode() {
+const setupTestMode = () => {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('testmode') === 'true') {
         fetch('LivelyProperties.json')
@@ -33,9 +33,9 @@ function setupTestMode() {
             .then(props => createTestUI(props))
             .catch(err => console.error("Failed to load properties for test mode:", err));
     }
-}
+};
 
-function createTestUI(props) {
+const createTestUI = (props) => {
     const container = document.createElement('div');
     Object.assign(container.style, {
         position: 'fixed',
@@ -138,7 +138,7 @@ function createTestUI(props) {
     document.body.appendChild(container);
 }
 
-function changeAdapter(name) {
+const changeAdapter = (name) => {
     if (currentAdapter) {
         currentAdapter.stop();
     }
@@ -149,13 +149,13 @@ function changeAdapter(name) {
     } else {
         console.error("Adapter not found: " + name);
     }
-}
+};
 
-function resetAdapter() {
+const resetAdapter = () => {
     changeAdapter(config.renderer);
-}
+};
 
-function livelyPropertyListener(name, val) {
+const livelyPropertyListener = (name, val) => {
   // Update Config
   switch(name) {
     case "wormSpeed":
@@ -167,10 +167,11 @@ function livelyPropertyListener(name, val) {
     case "wormDensity":
       config.wormDensity = val;
       break;
-    case "wormText":
+    case "wormText": {
        let textToUse = (!val || val.trim() === "") ? "CGI" : val;
        config.wormText = textToUse;
        break;
+    }
     case "wormDirection":
        config.wormDirection = ["Random", "Right", "Left", "Top", "Bottom"][val];
        break;
@@ -192,18 +193,18 @@ function livelyPropertyListener(name, val) {
   }
 }
 
-function updateTitle() {
+const updateTitle = () => {
     let title = `${config.renderer} - ${config.effectMode}`;
     if (config.wormText && config.wormText !== "CGI") {
         title += ` - ${config.wormText}`;
     }
     document.title = title;
-}
+};
 
 window.onload = init;
 
-function windowResized() {
+const windowResized = () => {
     if (currentAdapter && currentAdapter.resize) {
         currentAdapter.resize(window.innerWidth, window.innerHeight);
     }
-}
+};

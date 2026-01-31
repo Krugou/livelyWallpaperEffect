@@ -1,4 +1,4 @@
-function applyDirectionBias(part, wiggle, p, strength = 0.1) {
+const applyDirectionBias = (part, wiggle, p, strength = 0.1) => {
     if (part.hasDirection && !part.target) {
         let diff = part.baseAngle - part.angle;
         while (diff < -p.PI) diff += p.TWO_PI;
